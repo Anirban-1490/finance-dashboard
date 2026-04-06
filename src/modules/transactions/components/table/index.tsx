@@ -32,6 +32,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTransactionFilter } from "@/store/transaction-filter";
+import { deleteTransaction } from "@/api/transaction";
+import { useFinanceData } from "@/store/finance-data";
 
 export function TransactionTable({
   pageSize = 5,
@@ -55,6 +57,7 @@ export function TransactionTable({
   const [sorting, setSorting] = useState<SortingState>([]);
   const filterState = useTransactionFilter((state) => state.filter);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const setFinanceData = useFinanceData((state) => state.setData);
 
   const columns: ColumnDef<Transaction>[] = [
     {
@@ -120,8 +123,8 @@ export function TransactionTable({
 
               <DropdownMenuItem
                 onSelect={() => {
-                  setValueToEdit?.(cell.row.original);
-                  setOpenDialog?.(true);
+                  const data = deleteTransaction(cell.row.original.id);
+                  setFinanceData(data);
                 }}
               >
                 {" "}

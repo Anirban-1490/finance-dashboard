@@ -47,24 +47,24 @@ export function deleteTransaction(transactionId: string) {
     localStorage.getItem("financeData") || "{}",
   );
 
-  // const transaction = data.transactions.find((tx) => tx.id === transactionId);
+  const transaction = data.transactions.find(
+    (tx) => tx.id === transactionId,
+  ) as Transaction;
   // const transactionIndex = data.transactions.findIndex(
   //   (tx) => tx.id === transactionId,
   // );
 
   data.transactions = data.transactions.filter((tx) => tx.id !== transactionId);
-  // data.summary[transaction.type === "income" ? "income" : "expenses"].value +=
-  //   transaction.amount - prevAmount;
+  data.summary[transaction.type === "income" ? "income" : "expenses"].value -=
+    transaction.amount;
 
-  // data.summary.balance.value +=
-  //   transaction.type === "income"
-  //     ? transaction.amount - prevAmount
-  //     : -transaction.amount + prevAmount;
-  // data.spendingBreakdown[transaction.category].amount +=
-  //   transaction.type === "expense" ? transaction.amount - prevAmount : 0;
+  data.summary.balance.value +=
+    transaction.type === "income" ? -transaction.amount : +transaction.amount;
+  data.spendingBreakdown[transaction.category].amount -=
+    transaction.type === "expense" ? transaction.amount : 0;
 
   // console.log(data);
 
-  // localStorage.setItem("financeData", JSON.stringify(data));
+  localStorage.setItem("financeData", JSON.stringify(data));
   return data;
 }

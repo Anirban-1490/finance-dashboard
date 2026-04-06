@@ -7,7 +7,7 @@ export const initialFinanceData: FinanceDashboardData = {
       label: "Total Balance",
       value: 1250.0,
       currency: "USD",
-      percentageChange: 1.29,
+
       isPositiveTrend: true,
     },
     income: {
@@ -15,7 +15,7 @@ export const initialFinanceData: FinanceDashboardData = {
       label: "Total Income",
       value: 2150.0,
       currency: "USD",
-      percentageChange: 4.5,
+
       isPositiveTrend: true,
     },
     savings: {
@@ -23,7 +23,7 @@ export const initialFinanceData: FinanceDashboardData = {
       label: "Total Savings",
       value: 450.0,
       currency: "USD",
-      percentageChange: 0.85,
+
       isPositiveTrend: true,
     },
     expenses: {
@@ -31,7 +31,7 @@ export const initialFinanceData: FinanceDashboardData = {
       label: "Total Expenses",
       value: 900.0,
       currency: "USD",
-      percentageChange: 2.1,
+
       isPositiveTrend: false,
     },
   },

@@ -11,7 +11,7 @@ export interface SummaryItem {
   label: string;
   value: number;
   currency: string;
-  percentageChange: number;
+
   isPositiveTrend: boolean;
   id: string;
 }
