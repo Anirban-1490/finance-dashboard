@@ -7,11 +7,11 @@ export default function Transactions() {
   const data = useFinanceData((state) => state.data?.transactions || []);
   return (
     <FinanceCard cardProps={{ className: "row-span-1" }} title={"Transactions"}>
-      <div className="w-full">
+      <div className="w-full h-full flex flex-col justify-between gap-4">
         <TransactionTable data={data} />
         <a
           href="/transactions"
-          className="text-sm text-primary hover:underline block mt-6"
+          className="text-sm text-primary hover:underline block mt-auto"
         >
           View All Transactions
         </a>

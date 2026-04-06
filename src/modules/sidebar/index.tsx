@@ -30,6 +30,7 @@ export function Sidebar() {
   const [activeTab, setActiveTab] = useState(
     location.pathname.slice(1) || "dashboard",
   );
+  console.log(activeTab);
 
   const { user, setUser } = useAuth();
   const { setTheme, theme } = useTheme();
@@ -90,7 +91,9 @@ export function Sidebar() {
           />
         </div>
         <div className="flex items-center justify-between p-2 hover:bg-input rounded-xl cursor-pointer">
-          <p className="text-sm font-bold text-foreground">John Doe</p>
+          <p className="text-sm font-bold text-foreground">
+            {user?.username || "User"}
+          </p>
           <ChevronDown size={18} />
         </div>
       </div>

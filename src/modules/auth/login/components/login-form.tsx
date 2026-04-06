@@ -9,14 +9,16 @@ import {
 } from "@/components/ui/card";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { useAuth } from "@/store/auth";
+// import { useAuth } from "@/store/auth";
 import type { User } from "../../type";
+import { useState } from "react";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const setUser = useAuth((state) => state.setUser);
+  // const setUser = useAuth((state) => state.setUser);
+  const [form, setForm] = useState({ username: "", password: "" });
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -31,19 +33,17 @@ export function LoginForm({
           <form
             onSubmit={(ev) => {
               ev.preventDefault();
-              const formDate = new FormData(ev.currentTarget);
-              const username = formDate.get("username");
-              const password = formDate.get("password");
+
               const id = getId();
 
               const user = {
                 id,
-                username,
-                password,
+                username: form.username,
+                password: form.password,
                 type: "admin",
               } as User;
               localStorage.setItem("user", JSON.stringify(user));
-              setUser(user);
+              window.location.reload();
             }}
           >
             <FieldGroup>
@@ -53,7 +53,13 @@ export function LoginForm({
                   id="username"
                   type="text"
                   name="username"
+                  value={form.username}
                   placeholder="John Doe"
+                  onChange={(ev) => {
+                    setForm((prev) => {
+                      return { ...prev, username: ev.target.value };
+                    });
+                  }}
                   required
                 />
               </Field>
@@ -61,7 +67,18 @@ export function LoginForm({
                 <div className="flex items-center">
                   <FieldLabel htmlFor="password">Password</FieldLabel>
                 </div>
-                <Input name="password" id="password" type="password" required />
+                <Input
+                  onChange={(ev) => {
+                    setForm((prev) => {
+                      return { ...prev, password: ev.target.value };
+                    });
+                  }}
+                  value={form.password}
+                  name="password"
+                  id="password"
+                  type="password"
+                  required
+                />
               </Field>
 
               <Field>

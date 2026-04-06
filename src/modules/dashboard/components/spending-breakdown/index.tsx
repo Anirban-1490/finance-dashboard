@@ -54,40 +54,44 @@ export default function SpendingBreakdown() {
 
   return (
     <FinanceCard
-      cardProps={{ className: "h-full" }}
+      cardProps={{ className: "h-full h-full" }}
       title={"Spending Breakdown"}
     >
       {" "}
-      <div className="w-full flex flex-col items-center gap-4">
-        <ChartContainer
-          config={pieChartConfig}
-          className="w-full min-h-[10rem] h-[13rem]"
-        >
-          <PieChart>
-            {/* <ChartTooltip
+      <div className="w-full h-full flex flex-col justify-between items-center gap-4">
+        {!pieChartData.every((data) => data.amount == 0) ? (
+          <ChartContainer
+            config={pieChartConfig}
+            className="w-full min-h-[10rem] h-[13rem]"
+          >
+            <PieChart>
+              {/* <ChartTooltip
                 cursor={false}
                 content={<ChartTooltipContent hideLabel />}
               /> */}
-            <Pie
-              data={pieChartData}
-              dataKey="amount"
-              nameKey="category"
-              innerRadius={45}
-              shape={({
-                index,
-                outerRadius = 0,
-                ...props
-              }: PieSectorShapeProps) =>
-                index === ACTIVE_INDEX ? (
-                  <Sector {...props} outerRadius={outerRadius + 10} />
-                ) : (
-                  <Sector {...props} outerRadius={outerRadius} />
-                )
-              }
-            />
-          </PieChart>
-        </ChartContainer>
-        <div className="basis-[60%] flex gap-4 items-center justify-center flex-wrap">
+              <Pie
+                data={pieChartData}
+                dataKey="amount"
+                nameKey="category"
+                innerRadius={45}
+                shape={({
+                  index,
+                  outerRadius = 0,
+                  ...props
+                }: PieSectorShapeProps) =>
+                  index === ACTIVE_INDEX ? (
+                    <Sector {...props} outerRadius={outerRadius + 10} />
+                  ) : (
+                    <Sector {...props} outerRadius={outerRadius} />
+                  )
+                }
+              />
+            </PieChart>
+          </ChartContainer>
+        ) : (
+          "No Records"
+        )}
+        <div className="basis-[20%] flex gap-4 items-center justify-center flex-wrap">
           {pieChartData?.map((data) => {
             return (
               <div key={data.category} className="flex gap-4 items-center">

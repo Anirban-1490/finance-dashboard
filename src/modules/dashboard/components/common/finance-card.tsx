@@ -29,9 +29,7 @@ export function FinanceCard({
         <CardTitle className=" opacity-70 text-base">{title}</CardTitle>
         {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>
-      <CardContent className="flex items-center justify-between w-full">
-        {children}
-      </CardContent>
+      <CardContent className=" w-full h-full">{children}</CardContent>
       {/* <CardFooter>
         <Button variant="outline" size="sm" className="w-full">
           Action
