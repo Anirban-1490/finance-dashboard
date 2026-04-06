@@ -6,7 +6,7 @@ import { TransactionTable } from "@/modules/transactions/components/table";
 export default function Transactions() {
   const data = useFinanceData((state) => state.data?.transactions || []);
   return (
-    <FinanceCard cardProps={{ className: "row-span-5" }} title={"Transactions"}>
+    <FinanceCard cardProps={{ className: "row-span-1" }} title={"Transactions"}>
       <div className="w-full">
         <TransactionTable data={data} />
         <a

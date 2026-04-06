@@ -23,6 +23,7 @@ This Assignment features a simple financial dashboard
 5. <b>Responsive Navigation</b>: A sleek sidebar and header system optimized for all screen sizes.
 
 6. <b>Dark/Light Mode Support</b>: Optimized UI for different lighting environments.
+7. <b>RBAC </b>: Roll based authentication added, so only logged in user can modify its transactions and data
 
 ### Tech Stack
 

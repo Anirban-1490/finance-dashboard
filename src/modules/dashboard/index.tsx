@@ -25,6 +25,12 @@ const upcomingPaymentsData = [
     date: "14 Feb 2020",
     iconType: "phone",
   },
+  {
+    id: "pay-004",
+    title: "Car Sale",
+    date: "14 Feb 2020",
+    iconType: "phone",
+  },
 ];
 
 const nextMonth = dayjs().add(1, "month");
@@ -57,10 +63,10 @@ export function Dashboard() {
             })}
           </ul>
         </FinanceCard>
-        <FinanceCard
+        {/* <FinanceCard
           cardProps={{ className: "row-span-3" }}
           title={"Transactions"}
-        ></FinanceCard>
+        ></FinanceCard> */}
       </div>
     </main>
   );
