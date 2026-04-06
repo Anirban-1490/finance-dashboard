@@ -1,75 +1,53 @@
-# React + TypeScript + Vite
+🧐 Overview & Approach
+The goal of this project was to create a centralized hub for personal financial data that remains performant and visually engaging.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Core Philosophy:
+Data-Driven Visualization: Using dynamic charts to turn raw numbers into actionable insights.
 
-Currently, two official plugins are available:
+Component-Based Architecture: Built with a modular approach to ensure scalability and ease of maintenance. Each UI element (charts, transaction cards, sidebars) is treated as an independent unit.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+User-Centric Design: Focused on a "mobile-first" responsive layout, ensuring that the dashboard is accessible on desktops, tablets, and smartphones.
 
-## React Compiler
+State Management: Efficient handling of financial data to ensure real-time updates across different dashboard widgets.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+✨ Key Features
+Financial Overview Cards: At-a-glance views of total balance, monthly income, and total expenses.
 
-Note: This will impact Vite dev & build performances.
+Interactive Analytics: Visual representations of spending patterns using interactive charts (Line/Bar/Pie) to identify trends over time.
 
-## Expanding the ESLint configuration
+Transaction History: A detailed, searchable log of recent financial activities with categorization.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Category Breakdown: Insight into which sectors (e.g., Food, Rent, Entertainment) consume the most budget.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Responsive Navigation: A sleek sidebar and header system optimized for all screen sizes.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Dark/Light Mode Support: Optimized UI for different lighting environments to reduce eye strain.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🛠️ Tech Stack
+Frontend: React.js / Vite (for fast builds and optimized performance)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Styling: Tailwind CSS (for utility-first, responsive styling)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Charts: Recharts / Chart.js (for high-performance data visualization)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Icons: Lucide-react / React-icons
+
+Deployment: Netlify
+
+⚙️ Setup Instructions
+To run this project locally, follow these steps:
+
+Prerequisites
+Ensure you have Node.js (v14 or higher) and npm installed.
+
+1. Clone the Repository
+   Bash
+   git clone https://github.com/Anirban-1490/finance-dashboard.git
+   cd finance-dashboard
+2. Install Dependencies
+   Bash
+   npm install
+3. Run the Development Server
+   Bash
+   npm run dev
+   The application will be available at http://localhost:5173 (or the port specified in your terminal).
