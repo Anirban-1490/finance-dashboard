@@ -6,7 +6,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --text: #6b6375;
+  /* --text: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
   --border: oklch(0.922 0 0);
@@ -20,9 +20,9 @@
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --mono: ui-monospace, Consolas, monospace; */
 
-  font: 18px/145% var(--sans);
+  /* font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;
   color: var(--text);
@@ -34,7 +34,7 @@
 
   @media (max-width: 1024px) {
     font-size: 16px;
-  }
+  } */
 
   --background: oklch(1 0 0);
 
@@ -68,15 +68,15 @@
 
   --ring: oklch(0.708 0 0);
 
-  --chart-1: oklch(0.87 0 0);
+  --chart-1: #D64BC2;
 
-  --chart-2: oklch(0.556 0 0);
+  --chart-2: #de6fce;
 
-  --chart-3: oklch(0.439 0 0);
+  --chart-3: #e693da;
 
-  --chart-4: oklch(0.371 0 0);
+  --chart-4: #efb7e7;
 
-  --chart-5: oklch(0.269 0 0);
+  --chart-5: #f7dbf3;
 
   --radius: 0.625rem;
 
@@ -94,10 +94,14 @@
 
   --sidebar-border: oklch(0.922 0 0);
 
-  --sidebar-ring: oklch(0.708 0 0)
+  --sidebar-ring: oklch(0.708 0 0);
+
+
+  font-family: "Roboto", sans-serif;
+
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --text: #9ca3af;
     --text-h: #f3f4f6;
@@ -112,7 +116,7 @@
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
   }
 
-}
+} */
 
 @theme inline {
   --font-heading: var(--font-sans);
@@ -155,6 +159,12 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --color-pink-800: #D64BC2;
+  --color-pink-400: #FFD4F4;
+  --color-gain: #E5FFF1;
+  --color-fg-gain: #00AE4E;
+  --color-loss: #FFEEEE;
+  --color-fg-loss: #F83C3F;
 }
 
 .dark {
@@ -176,11 +186,14 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --chart-1: #D64BC2;
+  --chart-2: #de6fce;
+
+  --chart-3: #e693da;
+
+  --chart-4: #efb7e7;
+
+  --chart-5: #f7dbf3;
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -193,8 +206,26 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;}
+    @apply border-border outline-ring/50;
+  }
+
   body {
-    @apply bg-background text-foreground;}
-  html {
-    @apply font-sans;}}
+    @apply bg-background text-foreground;
+  }
+
+  /* html {
+    @apply font-sans;
+  } */
+
+  h1 {
+    @apply text-4xl font-medium;
+  }
+
+  h3 {
+    @apply text-2xl;
+  }
+
+  h5 {
+    @apply text-base;
+  }
+}

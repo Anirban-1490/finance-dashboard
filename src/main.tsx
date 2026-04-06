@@ -1,10 +1,11 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { createRoot } from "react-dom/client";
+import "./index.css";
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+import { ThemeProvider } from "next-themes";
+import { Router } from "./modules/router/index.tsx";
+
+createRoot(document.getElementById("root")!).render(
+  <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
+    <Router />
+  </ThemeProvider>,
+);
