@@ -4,8 +4,8 @@ import {
   Moon,
   ChevronDown,
   ArrowLeftRight,
-  Menu, // New icon for hamburger
-  X, // New icon for close
+  Menu,
+  X,
 } from "lucide-react";
 
 import { useTheme } from "next-themes";
@@ -26,7 +26,7 @@ const mainNav: NavItem[] = [
 
 export function Sidebar() {
   const location = useLocation();
-  const [isOpen, setIsOpen] = useState(false); // Mobile state
+  const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(
     location.pathname.slice(1) || "dashboard",
   );
@@ -37,7 +37,6 @@ export function Sidebar() {
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
-  // Reusable Nav Content
   const NavContent = () => (
     <div className="flex flex-col h-full w-full bg-sidebar border-r border-sidebar-border p-4 pt-8 text-primary">
       <nav className="flex-1 space-y-2">
@@ -100,11 +99,10 @@ export function Sidebar() {
 
   return (
     <>
-      {/* Backdrop */}
       {isOpen && (
         <div className="absolute inset-0 bg-black/50" onClick={toggleSidebar} />
       )}
-      {/* --- MOBILE TRIGGER (Floating Button) --- */}
+
       <div
         className={` hidden max-md:block w-full bg-background fixed top-0 py-10 z-30`}
       >
@@ -116,18 +114,15 @@ export function Sidebar() {
         </button>
       </div>
 
-      {/* --- MOBILE SIDEBAR (Overlay) --- */}
       <div
         className={`
         fixed inset-0 z-40 transition-transform duration-300 md:hidden
         ${isOpen ? "translate-x-0" : "-translate-x-full"} w-fit
       `}
       >
-        {/* Drawer */}
         <div className="relative w-[280px] h-full">{NavContent()}</div>
       </div>
 
-      {/* --- DESKTOP SIDEBAR --- */}
       <aside className="hidden md:block w-[20rem] fixed left-0 top-0 h-dvh z-30">
         {NavContent()}
       </aside>

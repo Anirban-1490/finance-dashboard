@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type Dispatch } from "react";
 
 import {
   flexRender,
@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown, Edit, MoreHorizontal, Trash } from "lucide-react";
-import type { FinanceCategory, Transaction } from "@/type";
+import type { Transaction } from "@/type";
 
 import {
   DropdownMenu,
@@ -33,33 +33,30 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTransactionFilter } from "@/store/transaction-filter";
 
-type Payment = {
-  id: string;
-  amount: number;
-  category: FinanceCategory;
-  date: string;
-  type: "income" | "expense";
-  name: string;
-};
-
 export function TransactionTable({
   pageSize = 5,
   enablePagination,
   extraColumns = [],
   data,
   showActions,
+  setOpenDialog,
+  setValueToEdit,
 }: {
   pageSize?: number;
   enablePagination?: boolean;
-  extraColumns?: ColumnDef<Payment>[];
+  extraColumns?: ColumnDef<Transaction>[];
   data: Transaction[];
   showActions?: boolean;
+  setOpenDialog?: Dispatch<React.SetStateAction<boolean>>;
+  setValueToEdit?: React.Dispatch<
+    React.SetStateAction<Transaction | undefined>
+  >;
 }) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const filterState = useTransactionFilter((state) => state.filter);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
-  const columns: ColumnDef<Payment>[] = [
+  const columns: ColumnDef<Transaction>[] = [
     {
       accessorKey: "name",
     },
@@ -97,7 +94,7 @@ export function TransactionTable({
     },
     {
       id: "actions",
-      cell: () => {
+      cell: ({ cell }) => {
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -111,12 +108,22 @@ export function TransactionTable({
 
               <DropdownMenuSeparator />
 
-              <DropdownMenuItem>
+              <DropdownMenuItem
+                onSelect={() => {
+                  setValueToEdit?.(cell.row.original);
+                  setOpenDialog?.(true);
+                }}
+              >
                 {" "}
                 <Edit className=" text-green-500" /> Edit
               </DropdownMenuItem>
 
-              <DropdownMenuItem>
+              <DropdownMenuItem
+                onSelect={() => {
+                  setValueToEdit?.(cell.row.original);
+                  setOpenDialog?.(true);
+                }}
+              >
                 {" "}
                 <Trash className=" text-red-500" /> Delete
               </DropdownMenuItem>

@@ -1,4 +1,9 @@
-import React, { useState, type PropsWithChildren } from "react";
+import React, {
+  useEffect,
+  useState,
+  type Dispatch,
+  type PropsWithChildren,
+} from "react";
 
 import {
   Dialog,
@@ -18,7 +23,7 @@ import {
 } from "@/components/ui/select";
 import { useTheme } from "next-themes";
 import type { FinanceCategory, Transaction, TransactionType } from "@/type";
-import { addTransaction } from "@/api/transaction";
+import { addTransaction, updateTransaction } from "@/api/transaction";
 import { getId } from "@/lib/utils";
 import dayjs from "dayjs";
 import { useFinanceData } from "@/store/finance-data";
@@ -27,8 +32,13 @@ export function TransactionDialog({
   children,
   transaction,
   isOpen,
-}: PropsWithChildren & { transaction?: Transaction; isOpen?: boolean }) {
-  const initialTransaction = transaction ?? {
+  setOpenDialog,
+}: PropsWithChildren & {
+  transaction?: Transaction;
+  isOpen?: boolean;
+  setOpenDialog: Dispatch<React.SetStateAction<boolean>>;
+}) {
+  const initialTransaction: Transaction = {
     name: "",
     amount: 0,
     date: "",
@@ -37,10 +47,18 @@ export function TransactionDialog({
     id: "",
   };
 
-  const [open, setOpen] = useState(!!isOpen);
   const setFinanceData = useFinanceData((state) => state.setData);
   const { theme } = useTheme();
   const [formData, setFormData] = useState<Transaction>(initialTransaction);
+
+  useEffect(() => {
+    (() => {
+      //* this is only for Edit
+      if (transaction) {
+        setFormData(transaction);
+      }
+    })();
+  }, [transaction]);
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,13 +69,15 @@ export function TransactionDialog({
       id: formData.id ? formData.id : getId(),
       date: dayjs(formData.date).format("YYYY-MM-DD"),
     };
-    const financeData = addTransaction(newTransaction as Transaction);
+    const financeData = transaction
+      ? updateTransaction(newTransaction as Transaction)
+      : addTransaction(newTransaction as Transaction);
     setFinanceData(financeData);
-    setOpen(false);
+    setOpenDialog(false);
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={isOpen} onOpenChange={setOpenDialog}>
       <DialogTrigger asChild>{children}</DialogTrigger>
 
       <DialogContent className="sm:max-w-[425px] ">

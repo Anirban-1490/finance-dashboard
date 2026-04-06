@@ -4,9 +4,14 @@ import { ListFilter, Plus } from "lucide-react";
 import { TransactionDialog } from "./components/dialog/transaction-dialog";
 import { useFinanceData } from "@/store/finance-data";
 import { Filter } from "./components/dialog/filter";
+import { useState } from "react";
+import type { Transaction } from "@/type";
 
 export function TransactionMain() {
   const data = useFinanceData((state) => state.data?.transactions || []);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [valueToEdit, setValueToEdit] = useState<Transaction>();
+
   return (
     <section className="w-full min-h-dvh ">
       <main className="max-md:mt-[4rem] min-md:ml-[19.5rem] p-8 flex flex-col gap-6">
@@ -21,7 +26,11 @@ export function TransactionMain() {
               Filter
             </Button>
           </Filter>
-          <TransactionDialog>
+          <TransactionDialog
+            transaction={valueToEdit}
+            setOpenDialog={setOpenDialog}
+            isOpen={openDialog}
+          >
             <Button variant={"primary"}>
               <Plus /> Add Transaction
             </Button>
@@ -32,6 +41,8 @@ export function TransactionMain() {
           data={data}
           enablePagination
           pageSize={10}
+          setOpenDialog={setOpenDialog}
+          setValueToEdit={setValueToEdit}
         />
       </main>
     </section>

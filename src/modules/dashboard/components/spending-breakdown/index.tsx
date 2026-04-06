@@ -1,5 +1,5 @@
 import { ChartContainer, type ChartConfig } from "@/components/ui/chart";
-import React from "react";
+
 import { Pie, PieChart, Sector, type PieSectorShapeProps } from "recharts";
 import { FinanceCard } from "../common/finance-card";
 import { useFinanceData } from "@/store/finance-data";
