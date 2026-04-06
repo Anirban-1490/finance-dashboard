@@ -1,53 +1,61 @@
-🧐 Overview & Approach
-The goal of this project was to create a centralized hub for personal financial data that remains performant and visually engaging.
+### Approach
 
-Core Philosophy:
-Data-Driven Visualization: Using dynamic charts to turn raw numbers into actionable insights.
+This Assignment features a simple financial dashboard
 
-Component-Based Architecture: Built with a modular approach to ensure scalability and ease of maintenance. Each UI element (charts, transaction cards, sidebars) is treated as an independent unit.
+1. Using dynamic charts to turn raw numbers into proper insights.
 
-User-Centric Design: Focused on a "mobile-first" responsive layout, ensuring that the dashboard is accessible on desktops, tablets, and smartphones.
+2. Built with a modular approach to ensure scalability and ease of maintenance. Mnay component is premade from shadcn which also provides a easy way for me to customize the component if need
 
-State Management: Efficient handling of financial data to ensure real-time updates across different dashboard widgets.
+3. Focused on a "mobile-first" responsive layout, ensuring that the dashboard is accessible on desktops, tablets, and smartphones. Usage of Tailwind Css helped ease this feature and made responsive design easy
 
-✨ Key Features
-Financial Overview Cards: At-a-glance views of total balance, monthly income, and total expenses.
+4. To Handle financial data or the RBAC a State management library Zustand is used to make it easier to sync data accross components and present a smooth experience
 
-Interactive Analytics: Visual representations of spending patterns using interactive charts (Line/Bar/Pie) to identify trends over time.
+### Features
 
-Transaction History: A detailed, searchable log of recent financial activities with categorization.
+1. <b>Summary Cards</b>: At-a-glance views of total balance, monthly income, and total expenses.
 
-Category Breakdown: Insight into which sectors (e.g., Food, Rent, Entertainment) consume the most budget.
+2. <b>Analytics</b>: Visual representations of spending patterns using interactive charts to identify trends over time.
 
-Responsive Navigation: A sleek sidebar and header system optimized for all screen sizes.
+3. <b>Transaction History</b>: A detailed log of recent financial activities with categorization.
 
-Dark/Light Mode Support: Optimized UI for different lighting environments to reduce eye strain.
+4. <b>Category Breakdown</b>: Insight into which category (e.g. Services, Shopping..) consume the most budget.
 
-🛠️ Tech Stack
+5. <b>Responsive Navigation</b>: A sleek sidebar and header system optimized for all screen sizes.
+
+6. <b>Dark/Light Mode Support</b>: Optimized UI for different lighting environments.
+
+### Tech Stack
+
 Frontend: React.js / Vite (for fast builds and optimized performance)
 
 Styling: Tailwind CSS (for utility-first, responsive styling)
 
-Charts: Recharts / Chart.js (for high-performance data visualization)
+Component/Charts: ShadCn/Recharts
 
-Icons: Lucide-react / React-icons
+Icons: Lucide-react
 
 Deployment: Netlify
 
-⚙️ Setup Instructions
+### Setup Instructions
+
 To run this project locally, follow these steps:
 
 Prerequisites
 Ensure you have Node.js (v14 or higher) and npm installed.
 
 1. Clone the Repository
-   Bash
+
+   ````
    git clone https://github.com/Anirban-1490/finance-dashboard.git
-   cd finance-dashboard
+   cd finance-dashboard```
+   ````
+
 2. Install Dependencies
-   Bash
-   npm install
+
+   `npm install`
+
 3. Run the Development Server
-   Bash
-   npm run dev
+
+   `npm run dev`
+
    The application will be available at http://localhost:5173 (or the port specified in your terminal).
